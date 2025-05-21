@@ -1,0 +1,34 @@
+<?php
+
+  require_once 'base/people.inc';
+  require_once 'functions/function.inc';
+
+  $aRoster = [];
+
+  $aRoster['curr'] = [];
+
+  $aRoster['curr']['S1'] = [];
+  $aRoster['curr']['S2'] = [];
+  $aRoster['curr']['S3'] = [];
+
+  // S1
+  $aRoster['curr']['S1']['codes'] = array('E001', 'E002', 'E003', 'E004', 'E005', 'E006');
+
+  // S2
+  $aRoster['curr']['S2']['codes'] = array('E007', 'E008', 'E009', 'E010', 'E011', 'E012');
+
+  // S3
+  $aRoster['curr']['S3']['codes'] = array('E013', 'E014', 'E015', 'E016');
+
+
+  foreach($aRoster['curr'] as $key => $value) {
+    foreach($value['codes'] as $code) {
+      $aRoster[$key]['names'][] = $aPeople[$code]['name'];
+    }
+  }
+
+  $contents = json_encode($aRoster, JSON_PRETTY_PRINT);
+
+  $filename = 'saved/roster.json';
+
+  fnWriteToFile($filename, $contents);
